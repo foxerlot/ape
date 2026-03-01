@@ -1,10 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <ncurses.h>
 #include <sys/types.h>
 #include "buffer.h"
-#include "editor.h"
 
 #ifdef WIN32
 #   include <io.h>

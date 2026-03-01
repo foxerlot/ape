@@ -5,8 +5,8 @@ CFLAGS      = -Wall -Wextra -Werror -Wpedantic -std=c99
 LFLAGS      = -lncurses
 WINLFLAGS   = -L/mingw64/lib -lncursesw
 WINCFLAGS   = -Wall -Wextra -Werror -Wpedantic -std=c99 -I/mingw64/include/ncurses
-TARGET      = fears
-WIN_TARGET  = fears.exe
+TARGET      = ape
+WIN_TARGET  = ape.exe
 
 SOURCES     = $(wildcard src/*.c)
 
