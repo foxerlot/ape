@@ -1,10 +1,12 @@
+[![](https://img.shields.io/badge/BUILD-NOT_PASSING-ff3131)]()
 # ape - amazingly preformant editor
 
-A futuristic text editor written in C.
+A power users ideal text editor...
 
-# TODOS:
-- add statusline
-- add line numbers
+## supports:
+- buffers
+- BSP-tree windows
 
-# ISSUES:
-- can not parse flags
+## TODO:
+- keymaps
+- bett flag parsing
