@@ -4,14 +4,14 @@
 #include <stdio.h>
 
 typedef struct {
-	int length;
-	char* line;
+    int length;
+    char* line;
 } row;
 
 typedef struct {
-	row* rows;
-	int numrows;
-	int capacity;
+    row* rows;
+    int numrows;
+    int capacity;
 } buffer;
 
 buffer* newBuf(void);
