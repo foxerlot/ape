@@ -1,7 +1,11 @@
 #include <stdlib.h>
 #include <ncurses.h>
 #include "window.h"
+#include "buffer.h"
 
+/*
+ * Returns a new leaf.
+ */
 frameNode* newLeaf(buffer* buf, frameNode* parent)
 {
     if (!buf) return NULL;
@@ -16,6 +20,9 @@ frameNode* newLeaf(buffer* buf, frameNode* parent)
     return n;
 }
 
+/*
+ * Returns a new split node whose left node is `node` and right node is a new node.
+ */
 frameNode* newSplit(frameNode* node, splitType split, buffer* newBuf)
 {
     if (!node || !newBuf || node->type != LEAF_NODE) return NULL;
@@ -47,19 +54,17 @@ frameNode* newSplit(frameNode* node, splitType split, buffer* newBuf)
     return n;
 }
 
+/*
+ * Draw an individual node. Recurses if `node->type == SPLIT_NODE`.
+ */
 void drawNode(frameNode* node, int x, int y, int w, int h)
 {
     if (!node) return;
 
-    (void)x;
-    (void)y;
-    (void)w;
-    (void)h;
-
     if (node->type == LEAF_NODE) {
         buffer* buf = node->item.buf;
-        for (int i = 0; i < buf->numrows; i++) {
-            move(node->y + i, node->x);
+        for (int i = 0; i < buf->numrows && i < h; i++) {
+            move(y + i, x);
             for (int j = 0; j < buf->rows[i].length && j < w; j++)
                 addch(buf->rows[i].line[j]);
         }

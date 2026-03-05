@@ -31,5 +31,6 @@ typedef struct frameNode {
 
 frameNode* newLeaf(buffer*, frameNode*);
 frameNode* newSplit(frameNode*, splitType, buffer*);
+void drawNode(frameNode*, int, int, int, int);
 
 #endif
