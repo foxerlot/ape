@@ -1,6 +1,8 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+#include "buffer.h"
+
 typedef enum {
     LEAF_NODE,
     SPLIT_NODE
@@ -19,13 +21,15 @@ typedef struct frameNode {
         splitType split;
     } item;
 
+    int x, y;
+    int width, height;
+
     struct frameNode* parent;
     struct frameNode* left;
     struct frameNode* right;
 } frameNode;
 
 frameNode* newLeaf(buffer*, frameNode*);
-frameNode* splitLeaf(frameNode*, splitType, buffer*);
-void drawNode(frameNode*);
+frameNode* newSplit(frameNode*, splitType, buffer*);
 
 #endif
