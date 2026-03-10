@@ -34,6 +34,7 @@
 #define CR 13
 #define LF 10
 #define BS 8
+#define MAC_BS 263
 #define CHAR_START 32
 #define CHAR_END 126
 #define ARROW_UP 1000

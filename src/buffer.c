@@ -108,7 +108,7 @@ void deleteChar(buffer* buf, int rowIndex, int at)
 {
     row* r = &buf->rows[rowIndex];
     if (!r) return;
-    if (at <= 0) {
+    if (at < 0) {
         deleteCR(buf, rowIndex);
         return;
     }
