@@ -123,7 +123,14 @@ int main(int argc, char** argv)
         drawNode(getRoot(focused), 0, 0, cols, rows);
         numLeaves = 0;
         countLeaves(getRoot(focused), leaves, &numLeaves);
-        move(focused->y + focused->cy, focused->x + focused->cx);
+
+        int visH = focused->height > 1 ? focused->height - 1 : rows - 1;
+        if (focused->cy < focused->scroll)
+            focused->scroll = focused->cy;
+        if (focused->cy >= focused->scroll + visH)
+            focused->scroll = focused->cy - visH + 1;
+
+        move(focused->y + focused->cy - focused->scroll, focused->x + focused->cx);
         refresh();
     } while ((ch = getch()) != CTRL_C);
 

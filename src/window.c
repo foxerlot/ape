@@ -71,8 +71,8 @@ void drawNode(frameNode* node, int x, int y, int w, int h)
         node->width = w;
         node->height = h;
         const buffer* buf = node->item.buf;
-        for (int i = 0; i < buf->numrows && i < h - 1; i++) {
-            const row* r = &buf->rows[i];
+        for (int i = 0; (i + node->scroll) < buf->numrows && i < h - 1; i++) {
+            const row* r = &buf->rows[i + node->scroll];
             const int len = r->length < w ? r->length : w;
             move(y + i, x);
             addnstr(r->line, len);

@@ -24,6 +24,7 @@ typedef struct frameNode {
     int x, y;
     int width, height;
     int cx, cy;
+    int scroll;
 
     struct frameNode* parent;
     struct frameNode* left;

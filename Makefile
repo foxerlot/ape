@@ -1,7 +1,7 @@
 CC          = gcc
 WINCC       = x86_64-w64-mingw32-gcc
 
-CFLAGS      = -Wall -Wextra -Werror -Wpedantic -std=c99
+CFLAGS      = -O3 -Wall -Wextra -Werror -Wpedantic -std=c99
 LFLAGS      = -lncurses
 WINLFLAGS   = -L/mingw64/lib -lncursesw
 WINCFLAGS   = -Wall -Wextra -Werror -Wpedantic -std=c99 -I/mingw64/include/ncurses
