@@ -121,16 +121,19 @@ int main(int argc, char** argv)
         }
         }
 
+        // cursor clamping
         if (focused->cy >= focused->item.buf->numrows) focused->cy = focused->item.buf->numrows - 1;
         if (focused->cy < 0) focused->cy = 0;
         if (focused->cx > focused->item.buf->rows[focused->cy].length) focused->cx = focused->item.buf->rows[focused->cy].length;
         if (focused->cx < 0) focused->cx = 0;
 
+        // screen drawing
         clear();
         drawNode(getRoot(focused), 0, 0, cols, rows);
         numLeaves = 0;
         countLeaves(getRoot(focused), leaves, &numLeaves);
 
+        // cursor stuff for scrolling... im pretty sure frameNode->height includes the statusline and is 1 based
         if (focused->cy >= focused->scroll && focused->cy <= focused->scroll + focused->height - 2)
             move(focused->y + focused->cy - focused->scroll, focused->x + focused->cx);
         refresh();
