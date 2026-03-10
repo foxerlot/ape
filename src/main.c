@@ -54,9 +54,11 @@ int main(int argc, char** argv)
             break;
         case CTRL_N:
             if (focused->cy < focused->item.buf->numrows - 1) focused->cy++;
+            if (focused->cy >= focused->scroll + focused->height - 2) focused->scroll = focused->cy - focused->height + 2;
             break;
         case CTRL_P:
             if (focused->cy > 0) focused->cy--;
+            if (focused->cy < focused->scroll) focused->scroll = focused->cy;
             break;
         case CTRL_F:
             if (focused->cx < focused->item.buf->rows[focused->cy].length) focused->cx++;
@@ -73,6 +75,9 @@ int main(int argc, char** argv)
             r->line[focused->cx] = '\0';
             break;
         }
+        case CTRL_X:
+            // TODO: implement some sort of commandLine();
+            break;
         case CTRL_W: {
             ch = getch();
             switch (ch) {
@@ -116,21 +121,18 @@ int main(int argc, char** argv)
         }
         }
 
-        if (focused->cx < 0) focused->cx = 0;
+        if (focused->cy >= focused->item.buf->numrows) focused->cy = focused->item.buf->numrows - 1;
+        if (focused->cy < 0) focused->cy = 0;
         if (focused->cx > focused->item.buf->rows[focused->cy].length) focused->cx = focused->item.buf->rows[focused->cy].length;
+        if (focused->cx < 0) focused->cx = 0;
 
         clear();
         drawNode(getRoot(focused), 0, 0, cols, rows);
         numLeaves = 0;
         countLeaves(getRoot(focused), leaves, &numLeaves);
 
-        int visH = focused->height > 1 ? focused->height - 1 : rows - 1;
-        if (focused->cy < focused->scroll)
-            focused->scroll = focused->cy;
-        if (focused->cy >= focused->scroll + visH)
-            focused->scroll = focused->cy - visH + 1;
-
-        move(focused->y + focused->cy - focused->scroll, focused->x + focused->cx);
+        if (focused->cy >= focused->scroll && focused->cy <= focused->scroll + focused->height - 2)
+            move(focused->y + focused->cy - focused->scroll, focused->x + focused->cx);
         refresh();
     } while ((ch = getch()) != CTRL_C);
 
