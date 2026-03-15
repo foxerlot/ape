@@ -14,7 +14,9 @@
 
 A terminal text editor for power users. Fast. Minimal. Split-pane capable. Stores text as a dynamic array of lines for simple, cache-friendly editing.  
 
-As of now this project is still very much in development, but I have a lot of great plans for it!  
+As of now this project is still very much in development, but I have a lot of great plans for it.  
+
+## Feel free to contribute if you Want to!  
 
 <div align="center">
   <sub>built with ♥ and ncurses</sub>
